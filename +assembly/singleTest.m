@@ -1,13 +1,14 @@
 function res = singleTest(nOfItems, itemDeltas, varargin)
 % function res = singleTest(nOfItems, itemDeltas, varargin)
 %
-% Returnt the item idexex from the itemParams
+% Returnt the item idexes from the itemParams
 % which compose a test.
 % 
 % nOfItems - number of items in teh test.
 % itemDeltas - list (column) of estimated item deltas
 %
 % Optional parameters: ['Name',value] pairs
+% The approach is based on Linear Optimal Test Design
 
 % Dimitar Atanasov. 2017
 % datanasov@ir-statistics.net
