@@ -1,4 +1,21 @@
 function [scores,se, see]=ML_RFM_scores( itemResponse, itemParams, o)
+% [scores,se, see]=ML_RFM_scores( itemResponse, itemParams, o)
+% Estimates the latent parameters for person abilities, based on
+% RFM model, using JML approach.
+%
+% INPUT: 
+%		itemResponse - dichotomous item response
+%		itemParams  - person D-scores	
+%		o            - oprions 
+%
+% OUTPUT:
+%		scores       - person latent D-scores
+%		se           - standard errors of the estimates
+%       see          - analitical solution for se  
+
+% Dimitar Atanasov, 2020
+% datanasov@ir-statistics.net
+
 
 if nargin < 3 
     o = deltaScoring.scoring.Options;

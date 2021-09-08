@@ -1,4 +1,7 @@
 function [TDF, CDIF, NCDIF, t_TDF, t_NCDIF, Results] = functioning (focal_params, reference_params, focalGroup, o)
+% [TDF, CDIF, NCDIF, t_TDF, t_NCDIF, Results] = functioning (focal_params, reference_params, focalGroup, o)
+%
+% ???
 
 if nargin < 4
     o = deltaScoring.scoring.Options();

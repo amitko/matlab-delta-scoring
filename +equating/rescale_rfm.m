@@ -1,9 +1,23 @@
 function [X_params_rescaled, opts] = rescale_rfm(X_params,Y_params,common_items,method_type,o)
+% [X_params_rescaled, opts] = rescale_rfm(X_params,Y_params,common_items,method_type,o)
+% Calculates the rescaled latent item parameters of test X on the scale of the base test Y.
+%
+% INPUT: 
+%		X_params - parameters of test X
+%		Y_params - parametres of test Y
+%		common_items - common items;  twoo columns 
+%				[base_test_item_id  new_test_item_id]
+%		method_type - Rescaling of the shape parameter s has two options
+%						direct [default] | trough_a 
+%
+% OUTPUT: 
+%		X_params_rescaled
+%		opts - Structure eith
+%				bA,bB,sA,sB
 
-% X - New test which should be rescaled on the scale of test Y (base test).
-% type - direct | trough_a - type of calculation of the rescaling for s.
 
-% datanasov@ir-statistics.net, 2020
+% Dimitar Atanasov, 2020
+% datanasov@ir-statistics.net
 
 if nargin < 4
     method_type = 'direct';

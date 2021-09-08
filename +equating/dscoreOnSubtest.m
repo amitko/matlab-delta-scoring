@@ -1,5 +1,10 @@
 function res = dscoreOnSubtest(itemParameters,itemParamatersRescaled,itemDeltas,dScore,o)
 
+% NOT IN USE
+
+% Dimitar Atanasov, 2017
+% datanasov@ir-statistics.net
+
 if nargin < 5
     o = deltaScoring.scoring.Options;
 end

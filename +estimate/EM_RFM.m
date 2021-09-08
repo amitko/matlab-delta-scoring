@@ -14,6 +14,8 @@ function [pars,SE]=EM_RFM( data,o)
 % datanasov@ir-statistics.net
 
 
+error("Not implemented yet"); 
+
 if nargin < 2
     o = deltaScoring.scoring.Options;
 end

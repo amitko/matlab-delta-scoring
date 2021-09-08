@@ -1,5 +1,22 @@
 function [Dscore_equated] = dscore_rfm(X_params, X_rescaled, Dscores, type, o)
 
+% [Dscore_equated] = dscore_rfm(X_params, X_rescaled, Dscores, type, o)
+% Calculates equated latent D-Score based on the latent parameters
+% 
+% INPUT: 
+%		X_params   - latent parameters of the test
+%       X_rescaled - rescaled parameters of the test after equating
+%		Dscores    - persons D-score
+%		type       - default value is m1
+%		o	       -  options
+%
+% OUTPUT:
+%		Dscore_equated - equated D-score 	
+
+% Dimitar Atanasov, 2017
+% datanasov@ir-statistics.net
+
+
 if nargin < 4
     type = 'm1';
 end
