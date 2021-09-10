@@ -1,4 +1,16 @@
 function res = icc(itemParameters,o)
+% res = icc(itemParameters,o)
+% Plots ICC curves under given item parameters
+%
+% INPUT: 
+%	itemParameters
+%	o - options
+%
+% OUTPUT: 
+%	res  - figure handle
+
+% Dimitar Atanasov, 2017
+% datanasov@ir-statistics.net
 
 if nargin < 2
     o = deltaScoring.scoring.Options;

@@ -7,7 +7,9 @@ function res = observedLogitDelta(ItemResponse, Dscore,o)
 %   ItemResponse - dichotomous item response 0/1
 %   Dscore       - estimated person's dScore
 %   o            - options
-%                dScale
+%                
+% OUTPUT: 
+% 	res - proportion of correct answers on dScale
 
 % Dimitar Atanasov, 2017
 % datanasov@ir-statistics.net

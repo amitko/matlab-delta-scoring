@@ -4,7 +4,17 @@ function f = itemPersonMap(itemD,studentsDScore,N_of_bins,hidden,ops)
 %     Plots distribution of person's dScore and items deltas
 %     on a common scale.
 %
-%     default N_of_bins = 20
+% INPUT: 
+% 	itemD          - item delta values
+% 	studentsDScore - persons D-score
+%	N_of_bins      - default  = 20
+% 	hidden         - if = 1 
+%   ops            - options for the plot
+%					    ops.xlabel = 'Delta Scale';
+%					    ops.title = 'Item-Person Map';
+%					    ops.ylabel = 'frequency (%)';
+%					    ops.legend = {'delta','D-score'};
+		 
 
 % Dimitar Atanasov, 2017
 % datanasov@ir-statistics.net

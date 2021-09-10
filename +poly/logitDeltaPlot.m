@@ -8,6 +8,9 @@ function h = logitDeltaPlot(GF,observedLogitDelta,o)
 %    observedLogitDelta - from Results of logitDeltaFit
 %    o - options
 %           dScale
+%
+% OUTPUT:
+%	h - figure habdle
 
 
 % Dimitar Atanasov, 2017

@@ -1,5 +1,15 @@
 function [DIHscores,Poly,Org] = poly2dih(Response)
+% [DIHscores,Poly,Org] = poly2dih(Response)
 % Convert polytomous to dihotomous item respone
+%
+% INPUT:
+%	Response - polytomous item response
+%
+% OUTPUT:
+%	DIHscores - dihotomous ite response
+%	Poly      - indicator for polytomous items
+%	Org       - Labels, etc. for poly items
+
 
 % Dimitar Atanasov, 2021
 % datanasov@ir-statistics.net

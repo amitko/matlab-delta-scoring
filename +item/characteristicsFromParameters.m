@@ -1,5 +1,16 @@
 function res = characteristicsFromParameters(item_params,o)
+% res = characteristicsFromParameters(item_params,o)
+% Calculates the item characteristics from item parameters
+%
+% INPUT: 
+%	item_params - item parameters
+%	o           - options
+%
+% OUTPUT
+%	res - [location, discrimination]	
 
+% Dimitar Atanasov, 2017
+% datanasov@ir-statistics.net
 
 if o.model == 1
     

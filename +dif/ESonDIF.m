@@ -1,5 +1,14 @@
 function [onFocal, onReference] = ESonDIF(focal_params,reference_params,o)
-%
+% [onFocal, onReference] = ESonDIF(focal_params,reference_params,o)
+% Calculates the effect size on focal and reference group for DIF
+% 
+% INPUT:
+%		focal_params 	 - item parameters, estimated on focal group
+%		reference_params - item parameters, estimated on reverence group
+%       o                - options
+
+% Dimitar Atanasov, 2021
+% datanasov@ir-statistics.net
 
 % dif = pcr_f - pcr_r;
 

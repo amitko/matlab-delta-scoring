@@ -1,4 +1,19 @@
 function res = MAD(params,observedLogitDelta,o)
+% res = MAD(params,observedLogitDelta,o)
+% Calculates the Mean Absolute Difference between 
+% opserved probability for correct response and 
+% predicted, according RFM model
+%
+% INPUT: 
+%	params             - item parameters
+%	observedLogitDelta - observed PCR
+%	o                  - options
+%
+% OUTPUT:
+% 	res - MAD values
+
+% Dimitar Atanasov, 2017
+% datanasov@ir-statistics.net
 
 if nargin < 3
     o = deltaScoring.scoring.Options;

@@ -1,7 +1,22 @@
-function [TDF, CDIF, NCDIF, t_TDF, t_NCDIF, Results] = functioning (focal_params, reference_params, focalGroup, o)
-% [TDF, CDIF, NCDIF, t_TDF, t_NCDIF, Results] = functioning (focal_params, reference_params, focalGroup, o)
+function [TDF, CDIF, NCDIF, t_TDF, t_NCDIF, Results] = functioning (focal_params, reference_params, focalGroupSize, o)
+% [TDF, CDIF, NCDIF, t_TDF, t_NCDIF, Results] = functioning (focal_params, reference_params, focalGroupSize, o)
+% Calculates different characteristics, corresponding to the DIF
+
+% INPUT:
+%		focal_params 	 - item parameters, estimated on focal group
+%		reference_params - item parameters, estimated on reverence group
+%       o                - options
 %
-% ???
+% OUTUT: 
+% 		TDF - test differention functioning statistics
+%		CDIF
+%		NCDIF
+%		t_TDF	- t-value of TDF
+%		t_NCDIF
+%		Results
+
+% Dimitar Atanasov, 2021
+% datanasov@ir-statistics.net
 
 if nargin < 4
     o = deltaScoring.scoring.Options();
@@ -10,8 +25,6 @@ end
 %dScale = focalGroup;
 
 dScale = [0.05:0.035:0.095]';
-
-focalGroupSize = size(focalGroup,1);
 
 focal_params_rescaled = deltaScoring.equating.rescale_rfm(focal_params, reference_params, [(1:size(focal_params,1))' (1:size(focal_params,1))'])
 
