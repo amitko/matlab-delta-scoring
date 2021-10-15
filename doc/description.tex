@@ -1,11 +1,11 @@
-\documentclass[12pt]{scrartcl}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 %\usepackage[bulgarian]{babel}
 \usepackage[pdftex]{graphicx}
 \usepackage{matlab-prettifier}
 
 \title{DELTA SCORING FUNCTION REFERENCE}
-\subtitle{version 0.1}
+%\subtitle{version 0.1}
 \author{D. Atanasov}
 
 \begin{document}
@@ -77,8 +77,51 @@ personTrueScoresSE = ...
 deltaScoring.scoring.trueScoreSE(ItemDelta,ItemParameters,personDscores,opt);
 \end{lstlisting}
 
+
+A latent verssion of the location and shape parameters (together with their SE) can be obtained by 
+\begin{lstlisting}[style=Matlab-bw]
+[LatentParams,LatentSE] =  deltaScoring.estimate.ML_RFM_params( itemScore, personDscores, opt);
+\end{lstlisting}
+
+The corresponding MAD is obtained by
+\begin{lstlisting}[style=Matlab-bw]
+LatentMAD = deltaScoring.item.MAD(LatentParams, Results.observedLogitDelta ,opt);
+\end{lstlisting}
+
+where {\itshape Results.observedLogitDelta} is calculated with {\itshape deltaScoring.estimate.logitDeltaFit} above and contains the proportion of observed correct answers for the values on the D-score scale.
+
+The corresponding latent values of the person D-scores ( and SE) can be obtained by
+\begin{lstlisting}[style=Matlab-bw]
+[latentScore, ~, latentScoreSE]= ...
+deltaScoring.estimate.ML_RFM_scores( itemScore,LatentParams, opt)
+\end{lstlisting}
+
+The estimations of latent item parameters and person D-scores can be iterated untill a convergence is reached
+
+\begin{lstlisting}[style=Matlab-bw]
+OldLatentParams = zeros(size(LatentParams));
+while max(abs(OldLatentParams - LatentParams)) > eps
+	OldLatentParams = LatentParams;
+	[LatentParams,LatentSE] =  ...
+		deltaScoring.estimate.ML_RFM_params( itemScore, personDscores, opt);
+	[latentScore, ~, latentScoreSE]= ...
+		deltaScoring.estimate.ML_RFM_scores( itemScore,LatentParams, opt)
+end
+\end{lstlisting}
+
+Equating of different tests can be reached by functions located in {\itshape deltaScoring.equating}. Here an example of equating of classical (nonlatent) parameters of the test will be presented. The equating is based of caclulation of two constants $A$ and $B$ which represents the change of scale for the test equationg. These constants can be calculated on the base of  item deltas of the target test {\itshape  targetDeltas}, item deltas (allready colculated above) and few common items between the two tests (stated in the variable {\itshape CommonItems} )
+
+\begin{lstlisting}[style=Matlab-bw]
+   [A,B] = deltaScoring.equating.constants(targetDeltas, ItemDelta, CommonItems);
+   equatedItemDeltas = deltaScoring.equating.rescale(ItemDelta,A,B);
+   equatedDscores = deltaScoring.scoring.dScore(ItemDelta,itemScore,opt.Dscore_method);
+\end{lstlisting}
+
+
 \section{Function reference}
 
-
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf deltaScoring.scoring.trueScoreSE}
+\par\noindent\rule{\textwidth}{0.4pt}
 
 \end{document}
