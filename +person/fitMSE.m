@@ -1,4 +1,9 @@
 function [Outfit, Infit] = fitMSE(item_response, expected_item_score)
+% [Outfit, Infit] = fitMSE(item_response, expected_item_score)
+% Calculates the Outfit and Infit of the MSE fit
+
+% Dimitar Atanasov, 2021
+% datanasov@ir-statistics.net
 
 [N_persons,N_items] = size(item_response);
 
@@ -8,7 +13,7 @@ if nargin < 2
 else
     E = expected_item_score';
 end
-    
+
 V = E.*(1-E);
 
 EE = ones(1,N_persons)'*E;

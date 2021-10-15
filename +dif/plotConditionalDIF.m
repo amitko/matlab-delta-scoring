@@ -1,4 +1,6 @@
 function f = plotConditionalDIF(dif,opt,visible)
+% plotConditionalDIF(dif,opt,visible)
+% Plots conditional DIF for the Focal and reference group
 
 % Dimitar Atanasov, 2021
 % datanasov@ir-statistics.net
@@ -11,7 +13,7 @@ f = figure('Visible',visible);
 x = linspace(0,1,size(dif,2))';
 
 I = dif > 0;
- 
+
 hold on
 
 bar(x(I == 1),abs(dif(I == 1)),'b');
@@ -21,9 +23,9 @@ xlabel('D-score');
 ylabel('Observed P-difference');
 xlim([0,1]);
 %xticks(0:.1:1);
-set(gca,'xtick',0:.1:1); 
+set(gca,'xtick',0:.1:1);
 
-if nargin < 2 || isempty(opt) 
+if nargin < 2 || isempty(opt)
     legend( 'against Reference','against Focal', 'Location','best');
 else
     set(gca, 'YLim', [0, opt.yMax]);
@@ -31,5 +33,5 @@ else
             ['against Focal | MPD=', num2str(opt.reference.mpd,'%.3f'), '; ES=', num2str(opt.reference.es,'%.3f')], ...
              'Location','best');
 end
-    
+
 hold off

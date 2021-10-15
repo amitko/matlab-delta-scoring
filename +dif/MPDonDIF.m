@@ -1,6 +1,5 @@
 function [onFocal, onReference] = MPDonDIF(dif)
-%
-
+% [onFocal, onReference] = MPDonDIF(dif)
 % dif = pcr_f - pcr_r;
 
 

@@ -1,10 +1,17 @@
 function [res, expected, variance] = likelihood(dScores,item_parameters,item_response,o)
-
+% [res, expected, variance] = likelihood(dScores,item_parameters,item_response,o)
+% Calculates the likelihood for a specific response pattern in item_response from a
+% person with ability in dScores, over a set of items in item_parameters.
+%
+%
 % based on
 % D. Dimitrov, R. Smith. Adjusted Rasch Person-Fit Statistics. J. of
 % Applied measurement. 2006
 %
-%
+
+% Dimitar Atanasov, 2021
+% datanasov@ir-statistics.net
+
 
 if nargin < 4
     o = deltaScoring.scoring.Options;

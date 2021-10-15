@@ -1,4 +1,21 @@
 function [DIF, DIFT,  HA, HB, HAT, HBT, Results] = testing(focal_params, reference_params, o)
+% [DIF, DIFT,  HA, HB, HAT, HBT, Results] = testing(focal_params, reference_params, o)
+% Tests DIF having estimated item parameters for focal
+% and reference group.
+%
+% DIF - indicator for a specific item
+%       0 - no DIF
+%       1 - against focal
+%       2 - against reference
+% DIFT - DIF on test level
+% HA   - Hypothesis nder approach A. Cell array of structures
+% HB   - Hypothesis nder approach B. Cell array of structures
+% HAT on test level
+% HBT on test level
+% Results - structure with detailed results
+
+% Dimitar Atanasov, 2021
+% datanasov@ir-statistics.net
 
 if nargin < 3
     o = deltaScoring.scoring.Options();
@@ -38,8 +55,8 @@ HB ={ };
 for k = 1:size(Results.focal_params_rescaled,1)
     if HA{k}.h == 1
         HB{k}.h = 0;
-        HB{k}.s.tstat = NaN;        
-        HB{k}.p = NaN;        
+        HB{k}.s.tstat = NaN;
+        HB{k}.p = NaN;
         continue;
     end
     [HB{k}.h, HB{k}.p, HB{k}.c, HB{k}.s] = ttest2(Results.Z_F(:,k),Results.Z_R(:,k),'alpha',alpha);
@@ -53,7 +70,7 @@ for k = 1:size(Results.focal_params_rescaled,1)
     if HB{k}.h == 1
         DIF(k) = 2;
     end
-    
+
 end
 
 HAT = struct;

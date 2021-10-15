@@ -1,6 +1,10 @@
 function res = fitHStatistics(item_response)
+% fitHStatistics(item_response)
+% Calculates the H statistics for the
+% dichotomous item response
 
-% Item response is dichotomous
+% Dimitar Atanasov, 2021
+% datanasov@ir-statistics.net
 
 scores = sum(item_response')';
 
@@ -21,13 +25,13 @@ for n = 1:N_persons
     tt_(n) = 0;
     t_ = t;
     t_(n) = 0;
-    
+
     nom = sum( tt_ - t(n) .* t_);
-    
+
     mm = min(t(n).*(1 - t),t.*(1-t(n)));
     mm(n)= 0;
     denom = sum ( mm ) ;
-        
+
     res(n,:) = nom/denom;
 end
 

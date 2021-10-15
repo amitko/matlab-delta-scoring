@@ -1,5 +1,4 @@
 function res = dscoreOnSubtest(itemParameters,itemParamatersRescaled,itemDeltas,dScore,o)
-
 % NOT IN USE
 
 % Dimitar Atanasov, 2017

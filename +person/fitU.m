@@ -1,4 +1,9 @@
 function res = fitU( params, Dscore, responses, o)
+% fitU( params, Dscore, responses, o)
+% Calculates U statistics
+
+% Dimitar Atanasov, 2021
+% datanasov@ir-statistics.net
 
 if size(Dscore,1) ~= size(responses,1)
     error('Dscores not matsh responses');
@@ -17,7 +22,7 @@ end
 sortedParams = params(I,:);
 
 res = zeros(size(Dscore,1),1);
-    
+
 for k = 1:size(Dscore,1)
 
     prc = deltaScoring.scoring.PCR(sortedParams,Dscore(k),o)';
@@ -27,7 +32,7 @@ for k = 1:size(Dscore,1)
     %GuttmanResponse = prc;
     GuttmanResponse = sortedB <= Dscore(k);
     ReverseGuttman = sortedB > Dscore(k);
-    
+
     res(k,:) =  ( sum(Lnd .* GuttmanResponse) - sum(Lnd .* responses(k,:)')) ./ (sum(Lnd .* GuttmanResponse) - sum(Lnd .* ReverseGuttman));
 
 end

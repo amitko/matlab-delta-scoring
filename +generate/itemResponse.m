@@ -1,4 +1,14 @@
 function [res, out] = itemResponse(Persons,itemParams,options,env)
+% [res, out] = itemResponse(Persons,itemParams,options,env)
+% Generates a item response for a number of Persons over a set
+% of items, defined by their item Parameters.
+%
+% env is a structure, containing additional
+% information about cheating and guessing.
+
+% Dimitar Atanasov, 2017
+% datanasov@ir-statistics.net
+
 
 % initial
 if nargin < 3 || isempty(options)
@@ -47,7 +57,7 @@ if isfield(env,'cheating') && isstruct(env.cheating)
         out.cheating.persons(k) = 1;
         out.cheating.cheated(k) = random('bino',1,env.cheating.proportion);
     end
-    
+
     res(out.cheating.cheated == 1,env.cheating.onItems) = 1;
 end
 
@@ -60,20 +70,20 @@ if isfield(env,'guessing') && isstruct(env.guessing)
         end
         out.guessing.persons(k) = 1;
         out.guessing.guessed(k) = random('bino',1,env.guessing.proportion);
-        
+
         if out.guessing.guessed(k) == 0
             continue;
         end
-        
+
         res(k,env.guessing.onItems) = random('bino',1,0.25,1,size(env.guessing.onItems,2));
-        
-        if sum(res(k,env.guessing.onItems)) >= 1 
+
+        if sum(res(k,env.guessing.onItems)) >= 1
             out.guessing.guessed(k) = 1;
         else
             out.guessing.guessed(k) = 0;
         end
     end
-    
+
 end
 
 

@@ -1,6 +1,12 @@
 function [focal_params,reference_params,deltasF,deltasR] = paramsForGroups(itemResponse,group,latent,o)
+% [focal_params,reference_params,deltasF,deltasR] = paramsForGroups(itemResponse,group,latent,o)
+% Calcultes the item parameters for the focal and reference group
+%
 % group 0 - reference, 1 - focal
-% params by default are latent 
+% params by default are latent
+
+% Dimitar Atanasov, 2021
+% datanasov@ir-statistics.net
 
 if nargin < 3 || isempty(latent)
     latent = 1;
@@ -35,4 +41,3 @@ else
 end
 
 
-    

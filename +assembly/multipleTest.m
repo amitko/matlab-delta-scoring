@@ -1,5 +1,19 @@
 function res = multipleTest(nOfTest, nOfItems, itemDeltas, varargin)
+% multipleTest(nOfTest, nOfItems, itemDeltas, varargin)
+%
+% Returnt the item idexes from the itemParams
+% which compose a number of tests test.
+%
+% nOfTest
+% nOfItems - number of items in teh test.
+% itemDeltas - list (column) of estimated item deltas
+%
+% Optional parameters: ['Name',value] pairs
+% The approach is based on Linear Optimal Test Design
+% Uses singleTest.
 
+% Dimitar Atanasov. 2017
+% datanasov@ir-statistics.net
 
 % Required items can be alligned with 0
 
@@ -65,12 +79,12 @@ if ~isempty(inP.Results.targetFunction)
 else
     ff = ones(1,numItems);
 end
-    
+
 
 res = [];
 
 for k = 1:nOfTest
-    
+
     % === Equality constraints ====
 
 %    if k == nOfTest
@@ -93,14 +107,14 @@ for k = 1:nOfTest
         Ae = [ones(1,numItems), zeros(1,numItems); zeros(1,numItems) , ones(1,numItems) ];
         be = [nOfItems; nOfItems * shadowTestScale ];
     end
-    
+
     % === Inequality constraints ====
     A = [];
     b = [];
-        
-   
+
+
     if ~isempty(inP.Results.deltaDistribution)
-        if sum(inP.Results.deltaDistribution,2) ~= nOfItems 
+        if sum(inP.Results.deltaDistribution,2) ~= nOfItems
             error('Distribution of deltas does not match nOfItems');
         end
 
@@ -108,7 +122,7 @@ for k = 1:nOfTest
 
         expectedMeanDelta = (inP.Results.deltaDistribution ./ nOfItems) * ((0:(nRange - 1)) /(nRange - 1))';
 
-        if expectedMeanDelta > inP.Results.meanOfDeltas + inP.Results.meanOfDeltasTolerance || expectedMeanDelta < inP.Results.meanOfDeltas - inP.Results.meanOfDeltasTolerance 
+        if expectedMeanDelta > inP.Results.meanOfDeltas + inP.Results.meanOfDeltasTolerance || expectedMeanDelta < inP.Results.meanOfDeltas - inP.Results.meanOfDeltasTolerance
             expectedMeanDelta
             inP.Results.meanOfDeltas
             inP.Results.meanOfDeltasTolerance
@@ -119,7 +133,7 @@ for k = 1:nOfTest
         for l = 0:nRange-1
             AA = zeros(1,numItems);
             AA(itemDeltas > l/nRange & itemDeltas <= (l+1)/ nRange) = 1;
-            
+
             if shadowTestScale == 0
                 Ae = [Ae; AA];
                 be = [be; inP.Results.deltaDistribution(l+1)];
@@ -135,16 +149,16 @@ for k = 1:nOfTest
     if ~isempty(excludedItems)
         if shadowTestScale == 0
             zr = zeros(1,numItems);
-            zr(excludedItems') = 1;  
+            zr(excludedItems') = 1;
         else
             zr = zeros(1,numItems * 2);
-            zr([excludedItems' excludedItems' + numItems]) = 1;  
+            zr([excludedItems' excludedItems' + numItems]) = 1;
         end
-        
+
         Ae = [Ae; zr];
         be = [be; 0];
     end
-    
+
     % required items forced to be 1 : Ax = size(requiredItems)
     if ~isempty(inP.Results.requiredItems)
         reqItems = inP.Results.requiredItems(k,inP.Results.requiredItems(k,:) > 0);
@@ -153,12 +167,12 @@ for k = 1:nOfTest
         else
             zr = zeros(1,numItems * 2);
         end
-        
+
         zr(reqItems) = 1;
         Ae = [Ae; zr];
         be = [be; size(reqItems,2)];
     end
-    
+
     % additional equalities
     if ~isempty(inP.Results.addEqualitiesLHS)
         if shadowTestScale == 0
@@ -176,15 +190,15 @@ for k = 1:nOfTest
         else
             A = [A; [inP.Results.addInequalitiesLHS zeros( size(inP.Results.addInequalitiesLHS))]];
         end
-        
+
         b = [b; inP.Results.addInequalitiesRHS];
     end
 
-    
+
 
     % ===== Optimizing =======
     %x = intlinprog(f,IntCon,A,b,Ae,be,lb,ub);
-    
+
     if shadowTestScale == 0
         ID = itemDeltas;
     else
@@ -201,17 +215,17 @@ for k = 1:nOfTest
                                     'meanOfDeltas', inP.Results.meanOfDeltas...
                                     );
 
-    
+
     if isempty(inCurrentTest)
         inCurrentTest = zeros(nOfItems,1);
         res = [];
         return;
     end
-                                
+
     res = [res inCurrentTest(1:nOfItems)];
-    
+
     excludedItems = [excludedItems; inCurrentTest(1:nOfItems)];
-    
+
 end
 
 

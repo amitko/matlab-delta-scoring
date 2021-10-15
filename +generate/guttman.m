@@ -1,4 +1,9 @@
 function [res, out] = guttman(NofPersons,itemParams,options,reverse)
+% guttman(NofPersons,itemParams,options,reverse)
+% Generates a item response according Guttman concept
+
+% Dimitar Atanasov, 2017
+% datanasov@ir-statistics.net
 
 if nargin < 3 || isempty(options)
     options = deltaScoring.scoring.Options();
@@ -15,7 +20,7 @@ J = size(itemParams,1);
 out.dScore = random('norm',0.5,0.1667,NofPersons,1);
 out.dScore(out.dScore > 1) = 1;
 out.dScore(out.dScore < 0) = 0;
- 
+
 
 itemCharacteristics = deltaScoring.item.characteristicsFromParameters(itemParams,options);
 
@@ -24,7 +29,7 @@ res = zeros(NofPersons,size(itemParams,1));
 for k = 1:NofPersons
     if reverse == 0
         res(k,itemCharacteristics(:,1) <= out.dScore(k)) = 1;
-    else 
+    else
         res(k,itemCharacteristics(:,1) > out.dScore(k) ) = 1;
     end
 end

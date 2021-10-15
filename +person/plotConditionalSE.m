@@ -1,7 +1,6 @@
 function f = plotConditionalSE(dScores,SE)
-
-% Function plotConditionalSE(dScores,SE)
-% plots conditional standard eroor 
+% plotConditionalSE(dScores,SE)
+% Plots conditional standard eroor
 
 % Dimitar Atanasov, 2021
 % datanasov@ir-statistics.net

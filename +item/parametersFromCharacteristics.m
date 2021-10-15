@@ -1,14 +1,14 @@
 function res = parametersFromCharacteristics(location,discrimination,o)
-% res =res = parametersFromCharacteristics(location,discrimination,o)
-% Calculates the item parameters from item characteristics 
+% res = parametersFromCharacteristics(location,discrimination,o)
+% Calculates the item parameters from item characteristics
 %
-% INPUT: 
-%	location	
+% INPUT:
+%	location
 %	discrimination
 %	o           - options
 %
 % OUTPUT
-%	res - [b,s]	
+%	res - [b,s]
 
 % Dimitar Atanasov, 2017
 % datanasov@ir-statistics.net

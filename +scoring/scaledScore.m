@@ -1,4 +1,7 @@
 function res=scaledScore(scores,t)
+% res=scaledScore(scores,t)
+% Scales the score according to type t
+% t = 'range' scales in range 0..100
 
 % Dimitar Atanasov, 2020
 % datanasov@ir-statistics.net

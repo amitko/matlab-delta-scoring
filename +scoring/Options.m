@@ -1,4 +1,25 @@
 function option = Options(varargin)
+% option = Options(varargin)
+% Defines the options for DELTA SCORING
+% Default Values
+%
+%         NofSamplesForBootstrapping: 1000
+%   sampleProportionForBootstrapping: 0.1000
+%            estTypeForBootstrapping: 'mode'
+%                             dScale: [21×1 double]
+%                             Models: {1×3 cell}
+%                         ModelNames: {'RFM1'  'RFM2'  'RFM3'}
+%                   ModelFixedParams: [1×1 struct]
+%                 Model_coefficients: {'b'  's'  'c'  'd'}
+%                              model: 2
+%                               type: 'raw'
+%                 skipObservedOnPlot: 2
+%                   aberrantQuantile: 0.7000
+%                                 EM: [1×1 struct]
+%                      StartingPoint: [0.5000 1 0.1000]
+%                              Lower: [0.0100 0.2000 0]
+%                              Upper: [0.9900 5 0.5000]
+%                  RFM_params_method: 'constrained'
 
 % Dimitar Atanasov, 2017
 % datanasov@ir-statistics.net
@@ -20,7 +41,7 @@ option.Models = {...
            %'1-((1-C)/(1+(x/B)^A))',...
            %'D-((D-C)/(1+(x/B)^A))',...
            %'A + B*x + C*(x^2) + D*(x^3)',...
-           %'x^A',...     
+           %'x^A',...
             %'(A * x ) / (A - x + 1)', ...
             %'x^((A + 0.5)^-2)',...
 

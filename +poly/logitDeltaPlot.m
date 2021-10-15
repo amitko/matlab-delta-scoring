@@ -27,7 +27,7 @@ L = {};
 
 x = 0:0.05:1;
 for k = 1:length(GF)
-    
+
     GFl = GF{k};
     %h = plot([0:0.1:1], GFl.parameters,[  'd-' ],'MarkerSize',10);
     y = feval(GFl.parameters,x);

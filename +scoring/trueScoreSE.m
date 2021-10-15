@@ -1,14 +1,14 @@
 function res = trueScoreSE(itemDeltas, parameters, dScore, o)
 % res = trueScoreSE(itemDeltas, parameters, dScore, o)
 % Calculates the true-score SE measure for person's dScode
-% on a set of items with delta scores in itemDeltas, 
+% on a set of items with delta scores in itemDeltas,
 % logistic parameters of the items and the persons dScore
-% 
+%
 %  INPUT:
-%.   itemDeltas - item's delta scores
-%.   parameters - item's logistics parameters
-%.   dScore.    - persons dScore
-%.   o.         - Options (defaults scoring.Options)
+%   itemDeltas - item's delta scores
+%   parameters - item's logistics parameters
+%   dScore    - persons dScore
+%   o         - Options (defaults scoring.Options)
 
 % Dimitar Atanasov, 2017
 % datanasov@ir-statistics.net

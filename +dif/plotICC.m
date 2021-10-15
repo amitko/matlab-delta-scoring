@@ -1,4 +1,9 @@
 function f = plotICC(focal_params,reference_params,o,visible)
+% plotICC(focal_params,reference_params,o,visible)
+% Plots ICC for the Focal and reference group
+
+% Dimitar Atanasov, 2020
+% datanasov@ir-statistics.net
 
 if nargin < 3 || isempty(o)
     o = deltaScoring.scoring.Options;
