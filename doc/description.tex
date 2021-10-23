@@ -13,26 +13,28 @@
 \maketitle
 
 \section{Introduction}
-This document describes the the set of functions and the way of their ussage for obtaining the DELTA SCORING approach for test evaluations.
+This document describes the set of functions and the way of their ussage for obtaining the DELTA SCORING approach for test evaluations.
 
 \section{Instalation}
-To install place the folder in the MATLAB path and rename it to +deltaScoring.
+To install the package download it from 
+{\tt https://github.com/amitko/matlab-delta-scoring.git}. 
+Place the folder in the MATLAB path and rename it to +deltaScoring.
 
 \section{Ussage}
-Here a example of a simple ussage of the package.
+Here is an example of a simple ussage of the package.
 
-Suppose the raw dichotomous item response id placed in varible itemScore.
+Suppose the raw dichotomous item response is placed in variable {\tt itemScore}.
 
-To estimate the items delta by bootstrapping procedure
+To estimate the expected item difficulties ("deltas") th bootstrapping procedure
 
 \begin{lstlisting}[style=Matlab-bw]
 [ItemDelta, estimatedDeltaSE] = ...
 	deltaScoring.estimate.itemDeltaBootstrap(itemScore);
 \end{lstlisting}
 
-is called. The resulted item deltas and the corresponding standard error of estimate are returned in variables ItemDelta, estimatedDeltaSE.
+is called. The resulted item deltas and the corresponding standard error of estimate are returned in variables {\tt ItemDelta} and  {\tt estimatedDeltaSE}.
 
-The classical person D-scores are calculated usind the response paterns in itemScore and already calculated item deltas.
+The classical person D-scores are calculated using the response paterns in itemScore and already calculated item deltas.
 
 \begin{lstlisting}[style=Matlab-bw]
 personDscores = ...
@@ -45,7 +47,7 @@ Here opt is a structure containing the options for he considered delta scoring m
 opt = deltaScoring.scoring.Options;
 \end{lstlisting}
 
-Here and after the default will be thw model RFM2. If a RFM3 model is aquared this can be stated in 
+Here and after the default will be the model RFM2. If a RFM3 model is required this can be stated in 
 
 \begin{lstlisting}[style=Matlab-bw]
 opt.model = 3;
@@ -53,16 +55,16 @@ opt.model = 3;
 
 and the corresonding options should be passed to the functions.
 
-The item properties location $b$ and shape $s$ can be obtained by
+The item parameters location $b$ and shape $s$ can be obtained by
 
 \begin{lstlisting}[style=Matlab-bw]
 [params, CI, ~, Results] = ...
 deltaScoring.estimate.logitDeltaFit(itemScore,personDscores,opt);
 \end{lstlisting}
 
-where {\itshape params} contains the matrix with corresponding parameters for any item in the test $[b,s]$. The first column corresponds to the location paramater  $b$ while the second represents the shape $s$. If the model is RMF3, the guessing parameter is in the third column.
+where {\tt params} contains the matrix with corresponding parameters for any item in the test $[b,s]$. The first column corresponds to the location paramater  $b$ while the second represents the shape $s$. If the model is RMF3, the guessing parameter is in the third column.
 
-The matrix {\itshape CI} is contains the 95\% confidence interval of the estimated values. {\itshape Results} contains additional fitting parameters (for example MAD i available in {\itshape Results.MAD}).
+The matrix {\tt CI} contains the 95\% confidence interval of the estimated values. {\tt Results} contains additional fitting parameters (for example MAD i available in {\tt Results.MAD}).
 
 The persons true scores can be calculated by
 \begin{lstlisting}[style=Matlab-bw]
@@ -109,7 +111,7 @@ while max(abs(OldLatentParams - LatentParams)) > eps
 end
 \end{lstlisting}
 
-Equating of different tests can be reached by functions located in {\itshape deltaScoring.equating}. Here an example of equating of classical (nonlatent) parameters of the test will be presented. The equating is based of caclulation of two constants $A$ and $B$ which represents the change of scale for the test equationg. These constants can be calculated on the base of  item deltas of the target test {\itshape  targetDeltas}, item deltas (allready colculated above) and few common items between the two tests (stated in the variable {\itshape CommonItems} )
+Equating of different tests can be performed by functions located in {\itshape deltaScoring.equating}. Here an example of equating of classical (nonlatent) parameters of the test will be presented. The equating is based of caclulation of two constants $A$ and $B$ which represents the change of scale for the test equating. These constants can be calculated on the base of  item deltas of the target test {\itshape  targetDeltas}, item deltas (allready colculated above) and few common items between the two tests (stated in the variable {\itshape CommonItems} )
 
 \begin{lstlisting}[style=Matlab-bw]
    [A,B] = deltaScoring.equating.constants(targetDeltas, ItemDelta, CommonItems);

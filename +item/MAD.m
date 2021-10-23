@@ -1,10 +1,11 @@
 function res = MAD(params,observedLogitDelta,o)
 % res = MAD(params,observedLogitDelta,o)
-% Calculates the Mean Absolute Difference between 
-% opserved probability for correct response and 
-% predicted, according RFM model
+% Calculates the Mean Absolute Difference between
+% opserved probability for correct response and
+% predicted probability obtained under the
+% selected RFM model.
 %
-% INPUT: 
+% INPUT:
 %	params             - item parameters
 %	observedLogitDelta - observed PCR
 %	o                  - options

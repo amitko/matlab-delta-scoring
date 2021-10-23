@@ -1,9 +1,9 @@
 function [res, out] = itemResponse(Persons,itemParams,options,env)
 % [res, out] = itemResponse(Persons,itemParams,options,env)
-% Generates a item response for a number of Persons over a set
+% Generates an item response Persons over a set
 % of items, defined by their item Parameters.
 %
-% env is a structure, containing additional
+% env is a structure containing additional
 % information about cheating and guessing.
 
 % Dimitar Atanasov, 2017
