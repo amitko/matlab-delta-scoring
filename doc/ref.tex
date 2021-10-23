@@ -1,0 +1,704 @@
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.assembly.multipleTest}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ multipleTest(nOfTest, nOfItems, itemDeltas, varargin)
+
+ Returnt the item idexes from the itemParams
+ which compose a number of tests test.
+
+ nOfTest
+ nOfItems - number of items in teh test.
+ itemDeltas - list (column) of estimated item deltas
+
+ Optional parameters: ['Name',value] pairs
+ The approach is based on Linear Optimal Test Design
+ Uses singleTest.
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.assembly.singleTest}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+
+ Returnt the item idexes from the itemParams
+ which compose a test.
+ 
+ nOfItems - number of items in teh test.
+ itemDeltas - list (column) of estimated item deltas
+
+ Optional parameters: ['Name',value] pairs
+ The approach is based on Linear Optimal Test Design
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.dif.conditionalDIF}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ conditionalDIF(focal_params,reference_params,o)
+
+ probabilities for correct item performance between
+ focal and reference group, based on parameters of 
+ the items for the two groups.
+ 
+ o - deltaScoring.scoring.Options
+
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.dif.ESonDIF}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [onFocal, onReference] = ESonDIF(focal_params,reference_params,o)
+ Calculates the effect size on focal and reference group for DIF
+ 
+ INPUT:
+		focal_params 	 - item parameters, estimated on focal group
+		reference_params - item parameters, estimated on reverence group
+       o                - options
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.dif.functioning}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ Calculates different characteristics, corresponding to the DIF
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.dif.Mantel\_Haenszel}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [a_MH,log_a_MH_SE,da_MH,z,p,MH,type,against]=Mantel_Haenszel(response,score,groups,reference)
+ Calculates Mantel-Haenszel statistics
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.dif.MPDonDIF}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [onFocal, onReference] = MPDonDIF(dif)
+ dif = pcr_f - pcr_r;
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.dif.paramsForGroups}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [focal_params,reference_params,deltasF,deltasR] = paramsForGroups(itemResponse,group,latent,o)
+ Calcultes the item parameters for the focal and reference group
+
+ group 0 - reference, 1 - focal
+ params by default are latent
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.dif.plotConditionalDIF}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ plotConditionalDIF(dif,opt,visible)
+ Plots conditional DIF for the Focal and reference group
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.dif.plotICC}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ plotICC(focal_params,reference_params,o,visible)
+ Plots ICC for the Focal and reference group
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.dif.plotTSC}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ plotTSC(focal_params,reference_params,o,visible)
+ Plots test score for the Focal and reference group
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.dif.testing}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [DIF, DIFT,  HA, HB, HAT, HBT, Results] = testing(focal_params, reference_params, o)
+ Tests DIF having estimated item parameters for focal
+ and reference group.
+
+ DIF - indicator for a specific item
+       0 - no DIF
+       1 - against focal
+       2 - against reference
+ DIFT - DIF on test level
+ HA   - Hypothesis nder approach A. Cell array of structures
+ HB   - Hypothesis nder approach B. Cell array of structures
+ HAT on test level
+ HBT on test level
+ Results - structure with detailed results
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.equating.constants}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [A,B] = constants(Base_test_deltas,New_test_deltas,common_items)
+              Y        X
+ Calculates the rescaling constants, based on common items
+ between two test.
+
+ INPUT:
+	Base_test_deltas - item deltas of the base test
+	New_test_deltas  - item deltas of the new test
+   common_items     - twoo columns
+				[base_test_item_id  new_test_item_id]
+
+ OUTPUT:
+		A and B
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.equating.dscore\_common}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ NOT IN USE
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.equating.dscore\_rfm}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [Dscore_equated] = dscore_rfm(X_params, X_rescaled, Dscores, type, o)
+ Calculates equated latent D-Score based on the latent parameters
+
+ INPUT:
+		X_params   - latent parameters of the test
+       X_rescaled - rescaled parameters of the test after equating
+		Dscores    - persons D-score
+		type       - default value is m1
+		o	       -  options
+
+ OUTPUT:
+		Dscore_equated - equated D-score
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.equating.dscoreOnSubtest}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ NOT IN USE
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.equating.rescale}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = rescale(deltas,A,B)
+ Rescale the item deltas of a test according
+ to rescaling constants A and B.
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.equating.rescale\_rfm}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [X_params_rescaled, opts] = rescale_rfm(X_params,Y_params,common_items,method_type,o)
+ Calculates the rescaled latent item parameters of test X on the scale of the base test Y.
+
+ INPUT: 
+		X_params - parameters of test X
+		Y_params - parametres of test Y
+		common_items - common items;  twoo columns 
+				[base_test_item_id  new_test_item_id]
+		method_type - Rescaling of the shape parameter s has two options
+						direct [default] | trough_a 
+
+ OUTPUT: 
+		X_params_rescaled
+		opts - Structure eith
+				bA,bB,sA,sB
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.estimate.EM\_RFM}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+  Function [pars,ability] = irt.ItemParametersEstimate_EM_3PL( data,o)
+      estimates the parameters of the item characreristic
+      curves under the IRT model usen the EM algorith.
+
+  Input:
+      data - Dihotomous item response
+      o    - scoring.Options (optional)
+  Output:
+      pars - Item parapeters
+           [difficulty, discrimination, guessing]
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.estimate.itemDeltaBootstrap}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.estimate.latentLklh}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ latentLklh(xi,itemResponse,deltaScores,o)
+ Calculates person likelihood on a specific test with a specific item response
+ For internal use in estimations
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.estimate.logitDeltaFit}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.estimate.logitDeltaPlot}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ h = logitDeltaPlot(GF,observedLogitDelta,o)
+ Plots the fit and the estimated logistics curve
+ Returns the figure object
+
+ INPUT:
+    GF - output from logitDeltaFit
+    observedLogitDelta - from Results of logitDeltaFit
+    o - options
+           dScale
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.estimate.ML\_RFM\_params}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [pars,se] = ML_RFM_params( itemResponse, deltaScores, o)
+ Estimates the latent parameters of the items base on 
+ RFM model, using JML approach.
+
+ INPUT: 
+		itemResponse - dichotomous item response
+		deltaScores  - person D-scores	
+		o            - oprions 
+
+ OUTPUT:
+		pars         - estimated parameter values
+		se           - standard errors of the estimates
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.estimate.ML\_RFM\_scores}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [scores,se, see]=ML_RFM_scores( itemResponse, itemParams, o)
+ Estimates the latent parameters for person abilities, based on
+ RFM model, using JML approach.
+
+ INPUT: 
+		itemResponse - dichotomous item response
+		itemParams  - person D-scores	
+		o            - oprions 
+
+ OUTPUT:
+		scores       - person latent D-scores
+		se           - standard errors of the estimates
+       see          - analitical solution for se  
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.generate.guttman}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ guttman(NofPersons,itemParams,options,reverse)
+ Generates a item response according Guttman concept
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.generate.itemResponse}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [res, out] = itemResponse(Persons,itemParams,options,env)
+ Generates an item response Persons over a set
+ of items, defined by their item Parameters.
+
+ env is a structure containing additional
+ information about cheating and guessing.
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.item.characteristicsFromParameters}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = characteristicsFromParameters(item_params,o)
+ Calculates the item characteristics from item parameters
+
+ INPUT: 
+	item_params - item parameters
+	o           - options
+
+ OUTPUT
+	res - [location, discrimination]	
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.item.icc}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = icc(itemParameters,o)
+ Plots ICC curves under given item parameters
+
+ INPUT: 
+	itemParameters
+	o - options
+
+ OUTPUT: 
+	res  - figure handle
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.item.MAD}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = MAD(params,observedLogitDelta,o)
+ Calculates the Mean Absolute Difference between
+ opserved probability for correct response and
+ predicted probability obtained under the
+ selected RFM model.
+
+ INPUT:
+	params             - item parameters
+	observedLogitDelta - observed PCR
+	o                  - options
+
+ OUTPUT:
+ 	res - MAD values
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.item.parametersFromCharacteristics}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = parametersFromCharacteristics(location,discrimination,o)
+ Calculates the item parameters from item characteristics
+
+ INPUT:
+	location
+	discrimination
+	o           - options
+
+ OUTPUT
+	res - [b,s]
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.person.aberrant}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = aberrant(itemParams,itemDeltas,Dscores,itemResponse,options)
+ Find aberrant person behaviour according
+ to the "quantile method" according to
+ An Examination of Different Methods of Setting Cutoff Values in Person Fit Research
+ Amin Mousavi, Ying Cui & Todd Rogers
+
+ INPUT:
+	itemParams   - item parameters
+	itemDeltas   - item deltas
+	Dscores      - persons D-scores
+	itemResponse - dichotomous item response
+
+ OUTPUT:
+	res - aberrant indicator 0/1
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.person.fitHStatistics}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ fitHStatistics(item_response)
+ Calculates the H statistics for the
+ dichotomous item response
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.person.fitIndexZ}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ fitIndexZ(lklh,Elklh,Vlklk)
+  Inputs are from person.likelihood
+
+ based on
+ D. Dimitrov, R. Smith. Adjusted Rasch Person-Fit Statistics. J. of
+ Applied measurement. 2006
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.person.fitMSE}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [Outfit, Infit] = fitMSE(item_response, expected_item_score)
+ Calculates the Outfit and Infit of the MSE fit
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.person.fitU}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ fitU( params, Dscore, responses, o)
+ Calculates U statistics
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.person.fitUD1}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ fitUD1(deltas, Dscore, responses)
+ Calculates UD1 Statistics
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.person.fitUD2}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ fitUD2( deltas, Dscore, responses, params, o)
+ Calculates UD2 statistics
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.person.likelihood}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [res, expected, variance] = likelihood(dScores,item_parameters,item_response,o)
+ Calculates the likelihood for a specific response pattern in item_response from a
+ person with ability in dScores, over a set of items in item_parameters.
+
+
+ based on
+ D. Dimitrov, R. Smith. Adjusted Rasch Person-Fit Statistics. J. of
+ Applied measurement. 2006
+
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.person.plotConditionalSE}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ plotConditionalSE(dScores,SE)
+ Plots conditional standard eroor
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.person.responeseProbability}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = responeseProbability(delta,item_parameters,o)
+ Calculates the probability for correct response from a
+ person with ability delta over the set of items with
+ parameters, defined in item_parameters.
+
+ INPUT
+   delta - Person ability
+   item_parameters - Item parameters [b,s,c]
+   o - Delta Scoring Options
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.poly.ccr}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ ccr(itemParameters,observedLogitDelta,o)
+ Plots Cathegory Characteristic Curves for the
+ Polytomous items
+
+ INPUT:
+   itemParameters - row vector of values of the difficulty parameter
+                          for item grades.
+	 observedLogitDelta  - person ability value
+	 o             - options
+
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.poly.itemPerformance}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = itemPerformance(itemParameters,delta,o)
+Calculates the probability for correct performance for the polytomous item
+
+ INPUT:
+   itemParameters - row vector of values of the difficulty parameter
+                          for item grades.
+	 delta 		   - person ability value
+	 o             - options
+
+ OUTPUT:
+	res - probability for correct performance
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.poly.logitDeltaPlot}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ h = logitDeltaPlot(GF,observedLogitDelta,o)
+ Plots the fit and the estimated logistics curve
+ Returns the figure object
+
+ INPUT:
+    GF - output from logitDeltaFit
+    observedLogitDelta - from Results of logitDeltaFit
+    o - options
+           dScale
+
+ OUTPUT:
+	h - figure habdle
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.scoring.dScore}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+
+ Returns the so called d-Score for a person
+ with a given response vector over a set
+ of items with precalculated deltas;
+
+ INPUT:
+	itemDeltas - item delta values
+   response   - 0/1 item response
+   t          - type
+			total / relative_to_n /
+           relative_to_d [default]
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.scoring.dScoreSE\_IRT}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ Returns the so called d-Score SE for a person
+ with a given a given ability theta (on a logit scale)
+ over a set of items with IRT parameters [b,a,c];
+
+ left here only for convenience.
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.scoring.itemPersonMap}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.scoring.observedLogitDelta}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ observedLogitDelta(ItemResponse, Dscore,o)
+ Calculates the proportions of the correct scores
+ for different falues of the dScale
+
+ INPUT:
+   ItemResponse - dichotomous item response 0/1
+   Dscore       - estimated person's dScore
+   o            - options
+                
+ OUTPUT: 
+ 	res - proportion of correct answers on dScale
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.scoring.Options}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ option = Options(varargin)
+ Defines the options for DELTA SCORING
+ Default Values
+
+         NofSamplesForBootstrapping: 1000
+   sampleProportionForBootstrapping: 0.1000
+            estTypeForBootstrapping: 'mode'
+                             dScale: [21x1 double]
+                             Models: {1x3 cell}
+                         ModelNames: {'RFM1'  'RFM2'  'RFM3'}
+                   ModelFixedParams: [1x1 struct]
+                 Model_coefficients: {'b'  's'  'c'  'd'}
+                              model: 2
+                               type: 'raw'
+                 skipObservedOnPlot: 2
+                   aberrantQuantile: 0.7000
+                                 EM: [1x1 struct]
+                      StartingPoint: [0.5000 1 0.1000]
+                              Lower: [0.0100 0.2000 0]
+                              Upper: [0.9900 5 0.5000]
+                  RFM_params_method: 'constrained'
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.scoring.PCR}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = PCR(params,delta,o)
+ Probability for correct response
+
+   INPUT:
+     params - logistics parameres
+     delta  - delta values
+     o      - options
+               mmodel
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.scoring.poly2dih}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ [DIHscores,Poly,Org] = poly2dih(Response)
+ Convert polytomous to dihotomous item respone
+
+ INPUT:
+	Response - polytomous item response
+
+ OUTPUT:
+	DIHscores - dihotomous ite response
+	Poly      - indicator for polytomous items
+	Org       - Labels, etc. for poly items
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.scoring.scaledScore}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res=scaledScore(scores,t)
+ Scales the score according to type t
+ t = 'range' scales in range 0..100
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.scoring.trueScore}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = trueScore(itemDeltas, parameters, dScore, o)
+ Calculates the true-score measure for person's dScode
+ on a set of items with delta scores in itemDeltas,
+ logistic parameters of the items and the persons dScore
+
+  INPUT:
+   itemDeltas - item's delta scores
+   parameters - item's logistics parameters
+   dScore    - persons dScore
+   o         - Options (defaults scoring.Options)
+\end{lstlisting}
+%%%%%%%%%%%%%
+\par\noindent\rule{\textwidth}{0.4pt}
+{\bf\tt deltaScoring.scoring.trueScoreSE}
+\par\noindent\rule{\textwidth}{0.4pt}
+\begin{lstlisting}[style=Matlab-bw]
+ res = trueScoreSE(itemDeltas, parameters, dScore, o)
+ Calculates the true-score SE measure for person's dScode
+ on a set of items with delta scores in itemDeltas,
+ logistic parameters of the items and the persons dScore
+
+  INPUT:
+   itemDeltas - item's delta scores
+   parameters - item's logistics parameters
+   dScore    - persons dScore
+   o         - Options (defaults scoring.Options)
+\end{lstlisting}
