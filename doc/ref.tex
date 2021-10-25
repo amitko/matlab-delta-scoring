@@ -22,7 +22,7 @@
 \par\noindent\rule{\textwidth}{0.4pt}
 \begin{lstlisting}[style=Matlab-bw]
 
- Returnt the item idexes from the itemParams
+ Returns the item idexes from the itemParams
  which compose a test.
  
  nOfItems - number of items in teh test.
@@ -193,7 +193,7 @@
 \par\noindent\rule{\textwidth}{0.4pt}
 \begin{lstlisting}[style=Matlab-bw]
  res = rescale(deltas,A,B)
- Rescale the item deltas of a test according
+ Rescales the item deltas of a test according
  to rescaling constants A and B.
 \end{lstlisting}
 %%%%%%%%%%%%%
@@ -397,7 +397,7 @@
 \par\noindent\rule{\textwidth}{0.4pt}
 \begin{lstlisting}[style=Matlab-bw]
  res = aberrant(itemParams,itemDeltas,Dscores,itemResponse,options)
- Find aberrant person behaviour according
+ Finds aberrant person behaviour according
  to the "quantile method" according to
  An Examination of Different Methods of Setting Cutoff Values in Person Fit Research
  Amin Mousavi, Ying Cui & Todd Rogers
@@ -651,7 +651,7 @@ Calculates the probability for correct performance for the polytomous item
 \par\noindent\rule{\textwidth}{0.4pt}
 \begin{lstlisting}[style=Matlab-bw]
  [DIHscores,Poly,Org] = poly2dih(Response)
- Convert polytomous to dihotomous item respone
+ Converts polytomous to dihotomous item respone
 
  INPUT:
 	Response - polytomous item response
@@ -676,14 +676,14 @@ Calculates the probability for correct performance for the polytomous item
 \par\noindent\rule{\textwidth}{0.4pt}
 \begin{lstlisting}[style=Matlab-bw]
  res = trueScore(itemDeltas, parameters, dScore, o)
- Calculates the true-score measure for person's dScode
+ Calculates the true-score measure for person's D-score
  on a set of items with delta scores in itemDeltas,
- logistic parameters of the items and the persons dScore
+ logistic parameters of the items and the person's D-score
 
   INPUT:
    itemDeltas - item's delta scores
    parameters - item's logistics parameters
-   dScore    - persons dScore
+   dScore    - person's D-score
    o         - Options (defaults scoring.Options)
 \end{lstlisting}
 %%%%%%%%%%%%%
@@ -692,13 +692,13 @@ Calculates the probability for correct performance for the polytomous item
 \par\noindent\rule{\textwidth}{0.4pt}
 \begin{lstlisting}[style=Matlab-bw]
  res = trueScoreSE(itemDeltas, parameters, dScore, o)
- Calculates the true-score SE measure for person's dScode
+ Calculates the true-score SE measure for person's D-score
  on a set of items with delta scores in itemDeltas,
- logistic parameters of the items and the persons dScore
+ logistic parameters of the items and the person's D-score
 
   INPUT:
    itemDeltas - item's delta scores
    parameters - item's logistics parameters
-   dScore    - persons dScore
+   dScore    - person's D-score
    o         - Options (defaults scoring.Options)
 \end{lstlisting}

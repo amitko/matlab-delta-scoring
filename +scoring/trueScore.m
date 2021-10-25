@@ -1,13 +1,13 @@
 function res = trueScore(itemDeltas, parameters, dScore, o)
 % res = trueScore(itemDeltas, parameters, dScore, o)
-% Calculates the true-score measure for person's dScode
+% Calculates the true-score measure for person's D-score
 % on a set of items with delta scores in itemDeltas,
-% logistic parameters of the items and the persons dScore
+% logistic parameters of the items and the person's D-score
 %
 %  INPUT:
 %   itemDeltas - item's delta scores
 %   parameters - item's logistics parameters
-%   dScore    - persons dScore
+%   dScore    - person's D-score
 %   o         - Options (defaults scoring.Options)
 
 % Dimitar Atanasov, 2017

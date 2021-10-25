@@ -1,7 +1,7 @@
 function res = singleTest(nOfItems, itemDeltas, varargin)
 % function res = singleTest(nOfItems, itemDeltas, varargin)
 %
-% Returnt the item idexes from the itemParams
+% Returns the item idexes from the itemParams
 % which compose a test.
 % 
 % nOfItems - number of items in teh test.

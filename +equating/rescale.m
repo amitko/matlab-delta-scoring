@@ -1,6 +1,6 @@
 function res = rescale(deltas,A,B)
 % res = rescale(deltas,A,B)
-% Rescale the item deltas of a test according
+% Rescales the item deltas of a test according
 % to rescaling constants A and B.
 
 % Dimitar Atanasov, 2017

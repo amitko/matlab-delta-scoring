@@ -1,6 +1,6 @@
 function res = aberrant(itemParams,itemDeltas,Dscores,itemResponse,options)
 % res = aberrant(itemParams,itemDeltas,Dscores,itemResponse,options)
-% Find aberrant person behaviour according
+% Finds aberrant person behaviour according
 % to the "quantile method" according to
 % An Examination of Different Methods of Setting Cutoff Values in Person Fit Research
 % Amin Mousavi, Ying Cui & Todd Rogers

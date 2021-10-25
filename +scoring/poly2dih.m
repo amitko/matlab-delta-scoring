@@ -1,6 +1,6 @@
 function [DIHscores,Poly,Org] = poly2dih(Response)
 % [DIHscores,Poly,Org] = poly2dih(Response)
-% Convert polytomous to dihotomous item respone
+% Converts polytomous to dihotomous item respone
 %
 % INPUT:
 %	Response - polytomous item response
