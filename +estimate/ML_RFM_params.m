@@ -1,12 +1,12 @@
 function [pars,se] = ML_RFM_params( itemResponse, deltaScores, o)
 % [pars,se] = ML_RFM_params( itemResponse, deltaScores, o)
-% Estimates the latent parameters of the items base on 
+% Estimates the latent parameters of the items base on
 % RFM model, using JML approach.
 %
-% INPUT: 
+% INPUT:
 %		itemResponse - dichotomous item response
-%		deltaScores  - person D-scores	
-%		o            - oprions 
+%		deltaScores  - person D-scores
+%		o            - oprions
 %
 % OUTPUT:
 %		pars         - estimated parameter values
@@ -15,7 +15,7 @@ function [pars,se] = ML_RFM_params( itemResponse, deltaScores, o)
 % Dimitar Atanasov, 2020
 % datanasov@ir-statistics.net
 
-if nargin < 3 
+if nargin < 3
     o = deltaScoring.scoring.Options;
 end
 
@@ -24,7 +24,7 @@ deltaScores(deltaScores <= 0.001) = 0.001;
 deltaScores(deltaScores >= 0.999) = 0.999;
 
 pars = [];
-se = []; 
+se = [];
 
 for item = itemResponse % for each item
 
@@ -42,15 +42,15 @@ for item = itemResponse % for each item
              fittedParams = 1;
         end
     end
-   
+
     % Estimation
     if strcmp(o.RFM_params_method, 'unconstrained')
-        p = fminsearch( f_ss, o.StartingPoint(1:fittedParams)); 
-    else  
+        p = fminsearch( f_ss, o.StartingPoint(1:fittedParams));
+    else
         optimOptions = optimoptions('fmincon','Display','none');
-        p = fmincon( f_ss, o.StartingPoint(1:fittedParams), [], [], [], [], o.Lower(1:fittedParams) ,o.Upper(1:fittedParams),[],optimOptions); 
+        p = fmincon( f_ss, o.StartingPoint(1:fittedParams), [], [], [], [], o.Lower(1:fittedParams) ,o.Upper(1:fittedParams),[],optimOptions);
     end
-    
+
 	% for the fixed parameters
     if ~isempty(fieldnames( o.ModelFixedParams))
         if isfield(o.ModelFixedParams,'c')
@@ -61,11 +61,11 @@ for item = itemResponse % for each item
              p(:,2) = o.ModelFixedParams.s;
         end
     end
-    
+
     pars = [pars; p];
-    
-    H = hessian(f_ss,p);
-    
+
+    H = deltaScoring.lib.derivest.hessian(f_ss,p);
+
     % SE as a inv. of Hessian.
     se = [se; sqrt(diag(inv(H)))'];
 end

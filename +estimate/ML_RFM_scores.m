@@ -3,21 +3,21 @@ function [scores,se, see]=ML_RFM_scores( itemResponse, itemParams, o)
 % Estimates the latent parameters for person abilities, based on
 % RFM model, using JML approach.
 %
-% INPUT: 
+% INPUT:
 %		itemResponse - dichotomous item response
-%		itemParams  - person D-scores	
-%		o            - oprions 
+%		itemParams  - person D-scores
+%		o            - oprions
 %
 % OUTPUT:
 %		scores       - person latent D-scores
 %		se           - standard errors of the estimates
-%       see          - analitical solution for se  
+%       see          - analitical solution for se
 
 % Dimitar Atanasov, 2020
 % datanasov@ir-statistics.net
 
 
-if nargin < 3 
+if nargin < 3
     o = deltaScoring.scoring.Options;
 end
 
@@ -39,17 +39,17 @@ for person = 1:size(itemResponse,1)
     f_ss = @(x) deltaScoring.estimate.latentLklh(itemParams,itemResponse(person,:),x,o);
 
     optimOptions = optimoptions('fmincon','Display','none');
-    
-    s = fmincon( f_ss, 0.5 , [], [], [], [],  0, 1 ,[],optimOptions); 
-    
+
+    s = fmincon( f_ss, 0.5 , [], [], [], [],  0, 1 ,[],optimOptions);
+
     scores(person) = s;
-    
+
     if calcSE > 0
-        H = hessian(f_ss,s);
+        H = deltaScoring.lib.derivest.hessian(f_ss,s);
         se(person) = sqrt(diag(inv(H)))';
     end
     see(person) = se_est(s,itemParams,o);
-   
+
 end
 
 function res = se_est(d,pars,o)
