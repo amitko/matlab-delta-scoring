@@ -1,23 +1,9 @@
 function [X_params_rescaled, opts] = rescale_rfm(X_params,Y_params,common_items,method_type,o)
-% [X_params_rescaled, opts] = rescale_rfm(X_params,Y_params,common_items,method_type,o)
-% Calculates the rescaled latent item parameters of test X on the scale of the base test Y.
-%
-% INPUT: 
-%		X_params - parameters of test X
-%		Y_params - parametres of test Y
-%		common_items - common items;  twoo columns 
-%				[base_test_item_id  new_test_item_id]
-%		method_type - Rescaling of the shape parameter s has two options
-%						direct [default] | trough_a 
-%
-% OUTPUT: 
-%		X_params_rescaled
-%		opts - Structure eith
-%				bA,bB,sA,sB
 
+% X - New test which should be rescaled on the scale of test Y (base test).
+% type - direct | trough_a - type of calculation of the rescaling for s.
 
-% Dimitar Atanasov, 2020
-% datanasov@ir-statistics.net
+% datanasov@ir-statistics.net, 2020
 
 if nargin < 4
     method_type = 'direct';
@@ -60,6 +46,14 @@ if size(X_params_rescaled,2) > 1
         opts.sB = mean(log(Y_params(:,2))) - opts.sA .* mean(log(X_params(:,2)));
 
         X_params_rescaled(:,2) = exp(opts.sA .* log(X_params(:,2)) + opts.sB); 
+    
+    elseif strcmp(method_type,'exp')
+        
+        t = exp(-X_params(:,2));
+        [opts.sA,opts.sB] = deltaScoring.equating.constants(exp(-Y_params(:,2)),t,common_items);
+        X_params_rescaled(:,2) = -log(deltaScoring.equating.rescale(t,opts.sA,opts.sB));
+
+
     end
 end
 
