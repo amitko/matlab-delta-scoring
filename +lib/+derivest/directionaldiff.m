@@ -60,7 +60,7 @@ vec = vec(:);
 vec = vec/norm(vec);
 vec = reshape(vec,sx);
 
-[dd,err,finaldelta] = lib.derivest.derivest(@(t) fun(x0+t*vec), ...
+[dd,err,finaldelta] = deltaScoring.lib.derivest.derivest(@(t) fun(x0+t*vec), ...
     0,'deriv',1,'vectorized','no');
 
 end % mainline function end
