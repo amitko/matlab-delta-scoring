@@ -32,7 +32,7 @@ hold on;
 for k = 1:size(itemParameters,1)
     
     pcr = deltaScoring.scoring.PCR(itemParameters(k,:),x,o);
-    plot(x,pcr,'k-', 'LineWidth',1.5);
+    plot(x,pcr,c(k), 'LineWidth',1.5);
 end
 
 xlim([0 1]);
