@@ -58,6 +58,8 @@ option.skipObservedOnPlot = 2;
 
 option.aberrantQuantile = 0.7;
 
+option.colorPlot = 1;
+
 % Options for EM algorith
 option.EM.startingPoint = [0.5 1 0.2];
 option.EM.NofLatentsCategories = 30;
