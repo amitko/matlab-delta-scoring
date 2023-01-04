@@ -1,4 +1,4 @@
-function res=item_recovery(attribute_performance, Q, model)
+function res=lsdmItemRecovery(attribute_performance, Q, model)
 % Function item_recovery(attribute_performance, Q, model)
 %	Calculates probability for correcet item responce 
 %	recovered from attribute performance.
@@ -22,6 +22,10 @@ function res=item_recovery(attribute_performance, Q, model)
 % Dimitar Atanasov (2008)
 % datanasov@nbu.bg
 
+if nargin == 2
+    model = 1;
+end
+
 if model == 1
     res=exp(Q * log(attribute_performance));
 elseif model == 2
@@ -30,4 +34,4 @@ elseif model == 3
     res = 1 - exp(Q * log(attribute_performance));
 elseif model == 4
     res = exp( Q * log( ones( size(attribute_performance) ) - attribute_performance) );
-end;    
+end   

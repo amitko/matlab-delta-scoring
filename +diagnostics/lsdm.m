@@ -20,7 +20,7 @@ function res = lsdm(item_performance,Q,type)
 
 if nargin == 2
     type = 1;
-end;
+end
 
 if type == 1
     a = 0;
@@ -36,7 +36,7 @@ elseif type == 4
     b = 1;
 else
     error('Unsupported model');
-end;
+end
     
 Res = [];
 for k = item_performance
@@ -45,7 +45,7 @@ for k = item_performance
      kt( find( kt < eps ) )  = ones( size( find( kt < eps), 1 ),1) .* eps;
      T =  - lsqnonneg (Q, - ( ( log(k) .* ( 1 - b ) ) + ( log( kt ) .* b ) ));     
      Res = [Res T];
-end;
+end
 
 res = exp(Res') .* (1 - a) + ( ones( size(Res') ) - exp(Res')) .* a;
 

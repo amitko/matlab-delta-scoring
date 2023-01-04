@@ -1,4 +1,4 @@
-function res = irt_attribute_mad(item_performance, attribute_performance, Q, model)
+function res = lsdmAttributeMAD(item_performance, attribute_performance, Q, model)
 % Function irt_attribute_mad(item_performance, attribute_performance, Q, model)
 %   Calculates Mean Absolute Difference (MAD) between 
 %   true item performance and its attribute recovery.
@@ -30,18 +30,18 @@ function res = irt_attribute_mad(item_performance, attribute_performance, Q, mod
 
 if nargin < 4
     model = 1;
-end;
+end
 
 if n ~= nQ || m ~= mA
     error('Dimension of item performance, attribute performance and Q should agree');    
-end;
+end
 
 if nA ~= mQ 
     error('Dimension of attribute performance and Q should agree');    
-end;
+end
 
 
-pe = item_recovery( attribute_performance, Q, model );
+pe = deltaScoring.diagnostics.lsdmItemRecovery( attribute_performance, Q, model );
 
 err = abs( item_performance - pe);
 res = mean(err');

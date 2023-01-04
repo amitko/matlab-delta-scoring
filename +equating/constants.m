@@ -7,7 +7,7 @@ function [A,B]=constants(Base_test_deltas,New_test_deltas,common_items)
 % INPUT:
 %	Base_test_deltas - item deltas of the base test
 %	New_test_deltas  - item deltas of the new test
-%   common_items     - twoo columns
+%   common_items     - two columns
 %				[base_test_item_id  new_test_item_id]
 %
 % OUTPUT:
