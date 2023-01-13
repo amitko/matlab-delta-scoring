@@ -23,7 +23,7 @@ for t = 1 : size( attr_performance,1 ) % for each ability level
     r = [];
     s = -sort(-attr_performance(t,:));
     for p = 0:size( attr_performance,2 ) % for each  'p'
-        r = [r comb_probability( attr_performance(t,:),p) ];
+        r = [r deltaScoring.lib.comb_probability( attr_performance(t,:),p) ];
     end
     res = [res; r];
 end
@@ -44,59 +44,3 @@ for k = 1 : size( attr_performance,1 )
     end
 end
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-function [res res_all]=comb_probability(p,k)
-% Function [res res_all]=comb_probability(p,k)
-% calculates combinatorial probability
-% to occur k events from the set A_1,...,A_n 
-% with probabilityes p_1,...,p_k
-%
-% INPUT:
-%       p - vector of probabilities p_1,...,p_n
-%       k - number of events to occur
-%
-% OUTPUT:
-%       res     - the result probability
-%       res_all - emements of the sum. res = sum(res_all)
-
-% Dimitar Atanasov, 2009
-% datanasov@nbu.bg
-
-res = 0;
-res_all = [];
-n = size(p,2);
-
-C = combination(n,k);
-
-for l = 1:size(C,1)
-    tr = 1;
-    for m = 1:size(C,2)
-        if C(l,m) == 1
-            tr = tr * p(m);
-        else
-            tr = tr * (1 - p(m));
-        end
-    end
-    res_all = [res_all tr]; 
-end
-res = sum(res_all');
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-function res=combination(n,k)
-% Function res=combination(n,k)
-% returns the 0/1 matrix for 
-% n_choose_k combinatorial problem
-
-% Dimitar Atanasov, 2009
-% datanasov@nbu.bg
-
-C = nchoosek([1:n],k);
-
-res = zeros(size(C,1),n);
-
-for h = 1:size(res,1)
-    res(h,C(h,:)) = ones(1,k);
-end
