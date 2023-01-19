@@ -8,8 +8,8 @@ function [DIF, DIFT,  HA, HB, HAT, HBT, Results] = testing(focal_params, referen
 %       1 - against focal
 %       2 - against reference
 % DIFT - DIF on test level
-% HA   - Hypothesis nder approach A. Cell array of structures
-% HB   - Hypothesis nder approach B. Cell array of structures
+% HA   - Hypothesis under approach A. Cell array of structures
+% HB   - Hypothesis under approach B. Cell array of structures
 % HAT on test level
 % HBT on test level
 % Results - structure with detailed results
