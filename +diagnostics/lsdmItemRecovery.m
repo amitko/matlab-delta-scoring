@@ -27,11 +27,11 @@ if nargin == 2
 end
 
 if model == 1
-    res=exp(Q * log(attribute_performance));
+    res=exp(Q * log(attribute_performance'))';
 elseif model == 2
-    res= 1 - exp(Q * log(ones( size(attribute_performance) ) - attribute_performance) );
+    res= 1 - exp(Q * log(ones( size(attribute_performance') ) - attribute_performance') )';
 elseif model == 3
-    res = 1 - exp(Q * log(attribute_performance));
+    res = 1 - exp(Q * log(attribute_performance'))';
 elseif model == 4
-    res = exp( Q * log( ones( size(attribute_performance) ) - attribute_performance) );
+    res = exp( Q * log( ones( size(attribute_performance') ) - attribute_performance') )';
 end   

@@ -32,11 +32,11 @@ if nargin < 4
     model = 1;
 end
 
-if n ~= nQ || m ~= mA
+if m ~= nQ || n ~= nA
     error('Dimension of item performance, attribute performance and Q should agree');    
 end
 
-if nA ~= mQ 
+if mA ~= mQ 
     error('Dimension of attribute performance and Q should agree');    
 end
 
