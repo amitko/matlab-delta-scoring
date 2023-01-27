@@ -7,7 +7,7 @@ function [TDF, CDIF, NCDIF, t_TDF, t_NCDIF, Results] = functioning (focal_params
 %		reference_params - item parameters, estimated on reverence group
 %       o                - options
 %
-% OUTUT: 
+% OUTUT:
 % 		TDF - test differention functioning statistics
 %		CDIF
 %		NCDIF
@@ -24,7 +24,7 @@ end
 
 %dScale = focalGroup;
 
-dScale = [0.05:0.035:0.095]';
+dScale = [0.05:0.035:0.95]';
 
 focal_params_rescaled = deltaScoring.equating.rescale_rfm(focal_params, reference_params, [(1:size(focal_params,1))' (1:size(focal_params,1))'])
 
