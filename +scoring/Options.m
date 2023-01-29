@@ -27,7 +27,7 @@ function option = Options(varargin)
 
 % for bootstrapping
 option.NofSamplesForBootstrapping = 1000;
-option.sampleProportionForBootstrapping = 0.1;
+option.sampleProportionForBootstrapping = .3;
 option.estTypeForBootstrapping = 'mode';
 
 %for logistics fit
