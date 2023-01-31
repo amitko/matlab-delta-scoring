@@ -13,5 +13,5 @@ P = deltaScoring.scoring.PCR(params,d);
 
 res = [];
 for k=1:size(P,2)
-    res(k,:) = (P(:,k) .^3 .* params(k,2)^2 .* (1 + deltaScoring.scoring.odds(params(k,1), d)' .^ params(k,2) ) .* deltaScoring.scoring.odds(params(k,1), d)' .^ params(k,2) ./ (d .^ 2 .* (1 - d).^2 ))';
+    res(k,:) = ((P(:,k) .* ( 1 - P(:,k)).* params(k,2)^2 )  ./ (d .^ 2 .* (1 - d).^2 ))';
 end
