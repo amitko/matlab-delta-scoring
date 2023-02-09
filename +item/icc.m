@@ -24,7 +24,7 @@ lt{3} = '-.';
 lt{4} = '--';
 
 
-x = linspace(0,1);
+x = linspace(0,1,20);
 
 res = figure;
 hold on;
@@ -42,7 +42,12 @@ for k = 1:size(itemParameters,1)
             cl = 1;
         end
     else
-        plot(x,pcr,'k-', 'LineWidth',1.5);
+        plot(x,pcr,['k' t(tp) lt{cl}], 'LineWidth',1.5);
+        cl = cl + 1;
+        if cl == 4
+            tp = tp + 1;
+            cl = 1;
+        end
     end
 end
 
