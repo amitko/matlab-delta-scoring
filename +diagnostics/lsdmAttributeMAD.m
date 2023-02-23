@@ -32,17 +32,17 @@ if nargin < 4
     model = 1;
 end
 
-if n ~= nQ || m ~= nA
+if n ~= nQ || m ~= mA
     error('Dimension of item performance, attribute performance and Q should agree');    
 end
 
-if mA ~= mQ 
+if nA ~= mQ 
     error('Dimension of attribute performance and Q should agree');    
 end
 
 
 pe = deltaScoring.diagnostics.lsdmItemRecovery( attribute_performance, Q, model )';
 
-err = abs( item_performance - pe);
+err = abs( item_performance - pe');
 res = mean(err');
 
