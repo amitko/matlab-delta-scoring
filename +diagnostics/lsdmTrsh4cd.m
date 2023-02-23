@@ -5,7 +5,6 @@ function [res, row] = trsh4cd(cd_attributes,th)
 % Dimitar Atanasov, 2023
 % datanasov@nbu.bg
 
-
 if size(cd_attributes,1) ~= size(th,1)
     error('Dimension of the input parameters must agree');
 end

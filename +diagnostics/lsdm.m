@@ -42,7 +42,8 @@ Res = [];
 for k = item_performance
      kt = ones( size(k) ) - k;
      eps = 0.0001;
-     kt( find( kt < eps ) )  = ones( size( find( kt < eps), 1 ),1) .* eps;
+     kt( kt < eps )  =  eps;
+     k( k < eps ) = eps;
      T =  - lsqnonneg (Q, - ( ( log(k) .* ( 1 - b ) ) + ( log( kt ) .* b ) ));     
      Res = [Res T];
 end
