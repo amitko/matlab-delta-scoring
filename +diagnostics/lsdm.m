@@ -37,9 +37,9 @@ elseif type == 4
 else
     error('Unsupported model');
 end
-    
-Res = [];
-for k = item_performance
+
+Res = ones(size(Q,2),1)*-Inf;
+for k = item_performance(:,2:end)
      kt = ones( size(k) ) - k;
      eps = 0.0001;
      kt( kt < eps )  =  eps;
