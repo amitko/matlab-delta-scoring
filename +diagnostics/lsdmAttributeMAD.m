@@ -40,9 +40,8 @@ if mA ~= mQ
     error('Dimension of attribute performance and Q should agree');    
 end
 
-
 pe = deltaScoring.diagnostics.lsdmItemRecovery( attribute_performance, Q, model )';
 
-err = abs( item_performance - pe);
+err = abs( item_performance(:,2:end) - pe(:,2:end));
 res = mean(err');
 
