@@ -22,7 +22,7 @@ Org.isPoly = [];
 
 c = 1;
 for k=1:size(Response,2)
-    if isequal(unique(Response(:,k)), [0;1])
+    if all(ismember(unique(Response(:,k)), [0;1]))
         DIHscores = [DIHscores, Response(:,k)];
         Poly.Labels = [Poly.Labels; [ num2str(c) '-Q' num2str(k)]];
         p.is = 0;
