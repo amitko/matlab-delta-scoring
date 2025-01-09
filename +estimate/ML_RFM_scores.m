@@ -35,20 +35,32 @@ if exist('hessian') > 0
 end
 
 for person = 1:size(itemResponse,1)
+    
+    
+    if (sum(itemResponse(person,:)) == length( itemResponse(person,:) ))
+        
+       scores(person) = 0.99;
+       
+    elseif (sum(itemResponse(person,:)) == 0)
+        
+        scores(person) = 0.01;
+        
+    else
 
-    f_ss = @(x) deltaScoring.estimate.latentLklh(itemParams,itemResponse(person,:),x,o);
+        f_ss = @(x) deltaScoring.estimate.latentLklh(itemParams,itemResponse(person,:),x,o);
 
-    optimOptions = optimoptions('fmincon','Display','none');
+        optimOptions = optimoptions('fmincon','Display','none');
 
-    s = fmincon( f_ss, 0.5 , [], [], [], [],  0, 1 ,[],optimOptions);
+        s = fmincon( f_ss, 0.5 , [], [], [], [],  0, 1 ,[],optimOptions);
 
-    scores(person) = s;
+        scores(person) = s;
 
-    if calcSE > 0
-        H = deltaScoring.lib.derivest.hessian(f_ss,s);
-        se(person) = sqrt(diag(inv(H)))';
+        if calcSE > 0
+            H = deltaScoring.lib.derivest.hessian(f_ss,s);
+            se(person) = sqrt(diag(inv(H)))';
+        end
+        see(person) = se_est(s,itemParams,o);
     end
-    see(person) = se_est(s,itemParams,o);
 
 end
 

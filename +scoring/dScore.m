@@ -31,3 +31,6 @@ elseif strcmp(t,'relative_to_d')
 else
     error('Not supported type!');
 end
+
+res(res >= 1) = 1;
+res(res <= 0) = 0;

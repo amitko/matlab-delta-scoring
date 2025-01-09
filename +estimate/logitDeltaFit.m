@@ -48,6 +48,8 @@ if strcmp(o.type,'prop')
     to_fit = Results.observedLogitDelta;
 elseif strcmp(o.type,'raw')
     x = dScores;
+    x(find(x <= 0)) = 0.01;
+    x(find(x >= 1)) = 0.99;
     to_fit = itemData;
 else
     error('Unsupported type');
@@ -67,12 +69,12 @@ for y = to_fit
         start_point = 0.5;
     elseif o.model == 2
         nParams = 2;
-        Model_lb = [0.01 0.01];
-        Model_ub = [0.99 5];
+        Model_lb = [0.01 0.3];
+        Model_ub = [0.99 3];
         start_point = [0.5 1];
     elseif o.model == 3
         nParams = 3;
-        Model_lb = [0.01 0.01 0];
+        Model_lb = [0.01 0.3 0];
         Model_ub = [0.99 5 0.5];
         start_point = [0.5 1 0.1];
     else
